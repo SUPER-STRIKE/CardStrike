@@ -10,10 +10,14 @@ For every **10 HP lost**, the armor is upgraded:
 
 **Maximum damage reduction: 36**
 
-
 < HP = 120 >  
+
 < Tank >
+
+
+
 ---
+
 ## `🛡️ Guard – Discipline`
 
 If this unit plays cards with the **same total Mana cost for 4 consecutive turns**:
@@ -22,14 +26,17 @@ If this unit plays cards with the **same total Mana cost for 4 consecutive turns
 - Deal damage equal to **2× the restored Mana**
 - This damage is **distributed evenly among all other players**
 
-
 < HP = 115 >  
+
 < Tank >
+
+
+
 ---
+
 ## `☠️ Death Knight – Undying`
 
 Whenever an enemy hero dies, summon a **Bone Knight**.
-
 
 ### 🦴 Bone Knight
 
@@ -43,8 +50,13 @@ Whenever an enemy hero dies, summon a **Bone Knight**.
 - Exception: **area/splash damage is not redirected**
 
 < HP = 110 >  
+
 < Tank >
+
+
+
 ---
+
 ## `🧘 Monk – Ascetic`
 
 Whenever any player takes damage:
@@ -68,7 +80,6 @@ Each time this unit deals damage with a card:
 Additionally:
 
 - Both affected enemies **cannot target the Monk for 1 turn**
-
 
 < HP = 90 >  
 < Tank >

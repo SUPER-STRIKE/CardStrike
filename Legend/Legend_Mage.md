@@ -11,8 +11,13 @@ Only **1 potion can be consumed per turn**.
 - **Blood Serum** – Heal for **100% of damage dealt this turn**
 
 < HP = 90 >  
+
 < Mage >
+
+
+
 ---
+
 ## `⏳ Time Manipulator – Control`
 
 At the end of each turn, gain **+2 Mana for every 10 Mana currently held**.
@@ -24,8 +29,13 @@ When this unit’s HP reaches zero:
 - This effect can only trigger **once per match**
 
 < HP = 80 >  
+
 < Mage >
+
+
+
 ---
+
 ## `🎲 Gambler – Greed`
 
 At the start of this unit’s turn, roll a **3-sided die (1–3)**.
@@ -56,8 +66,13 @@ Effect:
 - +30% damage taken (next turn)
 
 < HP = 80 >  
+
 < Mage >
+
+
+
 ---
+
 ## `👻 Wraith – Grudge`
 
 Each time this unit takes damage, gain **1 Grudge Point**.
@@ -77,8 +92,13 @@ The Wraith becomes **invisible** and cannot be directly targeted
   - Can still receive **splash/area damage**
 
 < HP = 100 >  
+
 < Mage >
+
+
+
 ---
+
 ## `🧙 Mage – Illusion`
 
 At the start of each turn, this unit automatically plays the **lowest-cost card used by any opponent during the previous round**.
@@ -94,8 +114,13 @@ Instead of choosing cards manually:
 - The player loses control over card selection for this turn only
 
 < HP = 60 >  
+
 < Mage >
+
+
+
 ---
+
 ## `🤡 Jester – Chaos`
 
 At the start of each turn, create a **Gift Box**.
@@ -116,8 +141,13 @@ The target player loses Mana equal to the Mana cost of the affected card.
 The Jester gains that Mana.
 
 < HP = 80 >  
+
 < Mage >
+
+
+
 ---
+
 ## `👑 Demon King – Shackles`
 
 At the start of a round, form a **Contract** with 2 random players.
@@ -133,8 +163,13 @@ The Contract lasts **1 round**, then ends.
 It can be **reactivated after 1 round cooldown**.
 
 < HP = 85 >  
+
 < Mage >
+
+
+
 ---
+
 ## `🧘 Hermit – Torment`
 
 Each time this unit takes damage, gain **1 Burst Point**.

@@ -14,6 +14,7 @@ Critical stats scale with damage dealt:
 
 < HP = 75 >  
 < Assassin >
+
 ---
 ## `⚡ Ninja – Speed`
 
@@ -25,6 +26,7 @@ Each successful damage taken increases dodge chance by **+2%**.
 
 < HP = 80 >  
 < Assassin >
+
 ---
 ## ```☠️ Death God – Final Breath```
 

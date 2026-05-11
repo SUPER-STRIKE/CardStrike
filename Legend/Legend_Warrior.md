@@ -19,6 +19,8 @@ When HP is below **25%**:
 
 < Fighter >
 
+
+
 ---
 
 ## `🏴‍☠️ Pirate – Plunder`
@@ -39,6 +41,8 @@ If this unit is the one who deals the killing blow:
 
 < Fighter >
 
+
+
 ---
 
 ## `🏹 Hunter – Blood Frenzy`
@@ -56,8 +60,13 @@ When this unit is below **30% HP**:
 - Gains **20% damage reduction (damage mitigation)**
 
 < HP = 100 >  
+
 < Fighter >
+
+
+
 ---
+
 ## `🩸 Occultist – Lone Path`
 
 This unit uses **HP instead of Mana** when playing cards.
@@ -76,6 +85,8 @@ At the start of each turn:
 < HP = 130 >  
 
 < Fighter >
+
+
 
 ---
 
