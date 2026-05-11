@@ -1,7 +1,74 @@
-Chiến binh-Kiên cường : Nhận ít hơn 6 sát thương mỗi khi nhận sát thương, với mỗi 10 máu mất đi, nâng cấp giáp giảm thêm 3 sát thương ( tối đa 36 ) <HP = 120> **<Đỡ đòn>**
+## `🛡️ Warrior – Indomitable`
 
-Lính gác - Kỉ luật : Nếu lính gác đánh ra số bài có tổng lượng mana giống nhau trong 4 lượt liên tiếp : hồi lại toàn bộ số mana đã dùng trong 4 lượt đó, x2 số mana thành sát thương chia đều lên toàn bộ người chơi còn lại <HP = 115 > **<Đỡ đòn>**
+This unit takes **reduced damage from all sources**.
 
-Tử sĩ - Bất tử : Mỗi khi tướng địch tử trận, triệu hồi một hiệp sĩ xương sở hữu một lượng máu bằng với máu tối đa tướng tử trận. Triệu hồi càng nhiều, lượng máu sở hữu của hiệp sĩ xương càng cao, thấp nhất 30%, tăng lên tối đa lên 150% ( thêm 30% với mỗi hiệp sĩ được triệu hồi ). Hiệp sĩ xương sẽ thu hút toàn bộ sát thương thay cho tử sĩ trừ sát thương lan <HP=110> **<Đỡ đòn>**
+- Each incoming damage instance is reduced by **6 (flat reduction)**
 
-Nhà tu-Khổ hạnh : Mỗi khi một người chơi bị tấn công hồi 5 máu đồng thời bốc 1 lá bài. Chỉ khi trong tay đạt được n+6 người chơi còn sống trong lobby lá, hắn mới có thể đánh bài, đồng thời mỗi lá bài khi gây sát thương sẽ đi kèm hiệu ứng giác ngộ làm cho sát thương mỗi lá bài gây thêm 1 lần nữa lên 1 kẻ địch ngẫu nhiên ngoài kẻ địch hiện tại (áp dụng cả sát thương lan) và 2 kẻ địch đó không thể chọn nhà sư làm mục tiêu trong 1 lượt <HP = 90 >**<Đỡ đòn>**
+For every **10 HP lost**, the armor is upgraded:
+
+- Gain **+3 additional damage reduction**
+
+**Maximum damage reduction: 36**
+
+
+< HP = 120 >  
+< Tank >
+---
+## `🛡️ Guard – Discipline`
+
+If this unit plays cards with the **same total Mana cost for 4 consecutive turns**:
+
+- Restore **all Mana spent during those 4 turns**
+- Deal damage equal to **2× the restored Mana**
+- This damage is **distributed evenly among all other players**
+
+
+< HP = 115 >  
+< Tank >
+---
+## `☠️ Death Knight – Undying`
+
+Whenever an enemy hero dies, summon a **Bone Knight**.
+
+
+### 🦴 Bone Knight
+
+- Base HP equals **30% of the fallen hero’s Max HP**
+- Each additional Bone Knight summoned increases this scaling by **+30%**
+- Maximum scaling: **150% of the fallen hero’s Max HP**
+
+### 🛡️ Effect
+
+- Bone Knights **redirect all damage taken by the Death Knight to themselves**
+- Exception: **area/splash damage is not redirected**
+
+< HP = 110 >  
+< Tank >
+---
+## `🧘 Monk – Ascetic`
+
+Whenever any player takes damage:
+
+- Heal this unit for **5 HP**
+- Draw **1 card**
+
+### ✋ Card Restriction
+
+This unit can only play cards if their hand size is at least:  
+**(N + 6)**, where N = number of players currently alive in the lobby.
+
+### ✨ Enlightenment Effect
+
+Each time this unit deals damage with a card:
+
+- That damage is **copied once**
+- The copy is dealt to a **random different enemy target**
+- This also applies to **splash/area damage**
+
+Additionally:
+
+- Both affected enemies **cannot target the Monk for 1 turn**
+
+
+< HP = 90 >  
+< Tank >

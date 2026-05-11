@@ -1,15 +1,154 @@
-Nhà khoa học- Sáng tạo : Sau mỗi 2 lượt đánh, nhận một ngẫu nhiên 1 chai thuốc mang hiệu ứng đặc biệt duy nhất, chỉ được tiêu thụ tối đa 1 lọ mỗi lượt ( Thần dược – loại bỏ toàn bộ hiệu ứng bất lợi hiện tại ) ( Qúa tải – Rút thêm 8 lá bài) ( Huyết thanh – hồi máu bằng 100% lượng sát thương gây ra lượt này) < HP = 90> **<Pháp Sư>**
+## `🧪 Scientist – Innovation`
 
-Thời không sư - Kiểm soát : Nhận thêm 2 mana với mỗi 10 mana sở hữu sau khi kết thúc lượt chơi đồng thời tăng giới hạn mana lên gấp đôi. Khi máu hắn hết sạch, chuyển hóa toàn bộ lượng mana còn thành máu người chơi đồng thời nhận 50 mana ( hiệu quả duy nhất 1 lần ) < HP = 80> **<Pháp Sư>**
+After every other turn, gain **1 random potion** with a unique effect.
 
-Con bạc - Tham lam : Khi đến lượt chơi của hắn, tung 1 viên xúc xắc 3 mặt có đánh số từ 1 đến 3, hắn được phép bốc số bài bằng số điểm xúc xắc tung được . Nhận số điểm tham lam bằng số điểm xúc xắc nhỏ nhận được . Nhận 1 viên xúc xắc 6 mặt, mỗi lần tung sẽ tiêu tốn 10 điểm tham lam, nhận phần thưởng ngẫu nhiên dựa trên số xúc xắc tung được, phần thưởng nhận được = số điểm của mặt xúc xắc to  loại phần thưởng. Phần thưởng có thể bất lợi cho bản thân ( 10 máu, - 15 máu , 15 mana , -18 mana , bỏ 1 lá bài , nhận 1 lá bài, thêm 40% sát thương gây ra, nhận thêm 30% sát thương cho lượt tiếp theo ) < HP = 80> **<Pháp Sư>**
+Only **1 potion can be consumed per turn**.
 
-Bóng ma -Thù hận : Mỗi lần dính sát thương, nhận 1 điểm thù hận, khi đủ 4 điểm thù hận, triệu hồi một trong các hiệu ứng bất lợi sau lên chính người đã gây sát thương lên hắn lần gần nhất ( Hóa đá - vô hiệu hóa kẻ thù trong 2 lượt ) ( Điều hướng - bắt buộc tất cả người chơi phải tấn công kẻ đó trong 2 lượt ) ( Hoán hình - Tàng hình và chỉ lộ diện cho đến khi kẻ đó tấn công hắn lại 2 lần nữa (nhận giảm 50% sát thương từ kẻ thù) - vẫn nhận sát thương lan nhưng không thể bị chọn làm mục tiêu ) < HP = 100> **<Pháp Sư>**
+### Possible potions:
 
-Pháp sư - Ảo ảnh: Mỗi lần đến lượt hắn, luôn được đánh kèm theo lá bài ít mana nhất của đối thủ trong cả vòng vừa rồi với 0 mana. Sau 5 lượt, không được đánh bài theo ý mình mà sẽ đánh ra tất cả 4 lá bài có giá trị cao nhất từ đầu game tới giờ mà không tốn mana < HP = 60>**<Pháp Sư>**
+- **Divine Elixir** – Remove all current negative effects
+- **Overload Serum** – Draw 8 additional cards
+- **Blood Serum** – Heal for **100% of damage dealt this turn**
 
-Chú hề-Hỗn loạn : Bắt đầu mỗi lượt chơi tạo ra một quà, kích hoạt ngẫu nhiên trong 1 cho đến n người chơi tới ( tùy vào lobby 4 hay 6 người thì lượt tối đa sẽ là 3 hoặc 5 ) . Hộp quà sẽ gây ra bất ngờ cho bản thân và cả đối thủ ( Nhân bản-Nhận được lá bài mà người chơi dính bẫy mới nhặt được ) ( Bỏng rát - Người chơi nhận được lá bài sẽ bị trừ máu bằng với sát thương mà lá bài gây ra, chú hề nhận lại lượng máu đó ) ( Phấn khích - Người chơi nhận được lá bài sẽ bị trừ mana bằng với mana lá bài, chú hề nhận lại lượng mana đó ) < HP = 80> **<Pháp Sư>**
+< HP = 90 >  
+< Mage >
+---
+## `⏳ Time Manipulator – Control`
 
-Qủy Vương-Xiềng xích : Tạo khế ước với 2 người chơi ngẫu nhiên trong 1 vòng, chia đều mana lên 2 người chơi thay vì Quỷ Vương mỗi khi hắn dùng bài , cả 2 đều chịu thiệt hại nếu 1 trong hai dính hiệu ứng bất lợi hoặc sát thương, và chia 100% sát thương Quỷ Vương nhận cho 2 người; khế ước có thể tái kích hoạt sau 1 vòng. < HP = 85> **<Pháp Sư>**
+At the end of each turn, gain **+2 Mana for every 10 Mana currently held**.
 
-Ẩn sĩ-Dày vò : Mỗi lần bị tấn công, nhận 1 điểm bùng nổ. Khi đủ điểm bùng nổ bằng số người chơi hiện tại trong lobby, lập tức khống chế tất cả người chơi, thu về ngẫu nhiên các lá bài từ tay mọi người chơi chỉ để cho họ còn đúng 4 lá bài trong 2 lượt, đồng thời hồi 3 máu và 1 mana với mỗi lá bài cướp được. < HP = 85> **<Pháp Sư>**
+When this unit’s HP reaches zero:
+
+- Convert all remaining Mana into HP for the player
+- Gain **+50 Mana immediately**
+- This effect can only trigger **once per match**
+
+< HP = 80 >  
+< Mage >
+---
+## `🎲 Gambler – Greed`
+
+At the start of this unit’s turn, roll a **3-sided die (1–3)**.
+
+- Draw cards equal to the rolled value
+- Gain **Greed Points equal to the rolled value**
+
+### 🎰 Secondary Ability – Big Dice
+
+Gain a **6-sided die**.
+
+Each roll costs **10 Greed Points**.
+
+Effect:
+
+- Roll the die and receive a reward based on the result
+- The reward may be **positive or negative**
+
+### Possible outcomes:
+
+- +10 HP
+- -15 HP
+- +15 Mana
+- -18 Mana
+- Discard 1 card
+- Draw 1 card
+- +40% damage dealt (this turn)
+- +30% damage taken (next turn)
+
+< HP = 80 >  
+< Mage >
+---
+## `👻 Wraith – Grudge`
+
+Each time this unit takes damage, gain **1 Grudge Point**.
+
+When reaching **4 Grudge Points**, trigger one of the following effects on the **last enemy who dealt damage**:
+
+### 💀 Possible effects (random):
+
+- **Petrification**  
+The target is **disabled for 2 turns** (cannot act)
+- **Redirection**  
+All players are forced to **attack the target for 2 turns**
+- **Phantom Shift**  
+The Wraith becomes **invisible** and cannot be directly targeted
+  - Remains hidden until the target attacks the Wraith **2 times**
+  - Takes **50% reduced damage from that target**
+  - Can still receive **splash/area damage**
+
+< HP = 100 >  
+< Mage >
+---
+## `🧙 Mage – Illusion`
+
+At the start of each turn, this unit automatically plays the **lowest-cost card used by any opponent during the previous round**.
+
+- The copied card is played for **0 Mana**
+
+### ⏳ After 5 turns:
+
+Instead of choosing cards manually:
+
+- Automatically play the **4 highest-cost cards used throughout the entire match so far**
+- All 4 cards are played **for 0 Mana**
+- The player loses control over card selection for this turn only
+
+< HP = 60 >  
+< Mage >
+---
+## `🤡 Jester – Chaos`
+
+At the start of each turn, create a **Gift Box**.
+
+The Gift Box randomly targets **1 to 3 players** in the 4-player lobby.
+
+### Gift Effects (random outcomes)
+
+Each triggered effect applies to the **target player**, and the Jester also receives the corresponding benefit:
+
+- **Duplication**  
+The target player copies a card obtained from the effect.
+- **Burning Pain**  
+The target player takes damage equal to the damage value of the affected card.  
+The Jester heals for the same amount.
+- **Excitement Drain**  
+The target player loses Mana equal to the Mana cost of the affected card.  
+The Jester gains that Mana.
+
+< HP = 80 >  
+< Mage >
+---
+## `👑 Demon King – Shackles`
+
+At the start of a round, form a **Contract** with 2 random players.
+
+### While Contract is active:
+
+- All Mana cost from Demon King’s card usage is **distributed equally among the 2 contracted players instead of Demon King**
+- If either contracted player takes damage or receives a negative effect, **the other player also suffers the same effect**
+- **100% of damage taken by Demon King is split equally between the 2 contracted players**
+
+The Contract lasts **1 round**, then ends.
+
+It can be **reactivated after 1 round cooldown**.
+
+< HP = 85 >  
+< Mage >
+---
+## `🧘 Hermit – Torment`
+
+Each time this unit takes damage, gain **1 Burst Point**.
+
+When Burst Points equal the number of players in the lobby:
+
+- Immediately **control all players**
+- Steal random cards from each player’s hand
+- Each player is left with exactly **4 cards for 2 turns**
+
+For each stolen card:
+
+- Heal **+3 HP**
+- Gain **+1 Mana**
+
+< HP = 85 >  
+< Mage >

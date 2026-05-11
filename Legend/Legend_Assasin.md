@@ -1,5 +1,46 @@
-Sát thủ-Chuẩn xác : Mỗi lần tấn công có xác suất 15% gây sát thương chí mạng = 150 % sát thương gốc, tăng thêm 1% tỉ lệ chí mạng với mỗi 6 sát thương gây ra, 15% sát thương chí mạng với mỗi 20 sát thương gây ra ( tối đa 32% tỉ lệ chí mạng và 200% sát thương chí mạng ) < HP = 75> **<Sát Thủ>**
+## `🗡️ Assassin – Precision`
 
-Ninja-Tốc độ : Sở hữu 14% tỉ lệ né toàn bộ sát thương nhận vào, nhận thêm 2% với mỗi lần nhận sát thương thành công ( tối đa 28% ) < HP = 80> **<Sát Thủ>**
+Each attack has a **15% chance to deal critical damage**, dealing **150% base damage**.
 
-Thần chết-Trăn trối : Khi bị kết liễu, sống sót với 1 máu, bất tử thêm 1 vòng đấu trước khi hoàn toàn tử trận và ngay lập tức đến lượt hắn. Rút thêm bài để trên tay đủ 8 lá, đánh 1 lúc ra 8 lá bài nhưng không nhận hiệu ứng của các lá bài mà lập tức gây sát thương từ tất cả lá bài lên 1 người chơi, không thể đánh bài trong các lượt còn lại < HP = 80> **<Sát thủ>**
+Critical stats scale with damage dealt:
+
+- For every **6 damage dealt**, gain **+1% critical chance**
+- For every **20 damage dealt**, gain **+15% critical damage bonus**
+
+**Caps:**
+
+- Maximum critical chance: **32%**
+- Maximum critical damage: **200%**
+
+< HP = 75 >  
+< Assassin >
+---
+## `⚡ Ninja – Speed`
+
+Has a **14% chance to completely dodge incoming damage**.
+
+Each successful damage taken increases dodge chance by **+2%**.
+
+**Maximum dodge chance: 28%**
+
+< HP = 80 >  
+< Assassin >
+---
+## ```☠️ Death God – Final Breath```
+
+Upon receiving a lethal blow, survives with **1 HP** and becomes **invulnerable for 1 turn**.
+
+Immediately takes an extra turn:
+
+- Draw cards until reaching a full hand of **8 cards**
+- Play all 8 cards at once
+- Cards do **not trigger their effects**, but instead deal raw damage immediately
+- All damage is applied to a single chosen player
+
+After this turn:
+
+- Cannot play any cards for the remainder of the match
+- Dies immediately after the effect ends
+
+< HP = 80 >  
+< Assassin >
