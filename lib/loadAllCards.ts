@@ -8,8 +8,8 @@ const repoRoot = path.join(__dirname, "..");
 
 const paths = {
   cardDataJson: path.join(repoRoot, "Card", "Data", "CardData.json"),
-  cardTypeJson: path.join(repoRoot, "Card", "Meta", "card_type.json"),
-  cardRarityJson: path.join(repoRoot, "Card", "Meta", "card_rarity.json"),
+  cardTypeJson: path.join(repoRoot, "Card", "Meta", "Type", "card_type.json"),
+  cardRarityJson: path.join(repoRoot, "Card", "Meta", "Rarity", "card_rarity.json"),
 };
 
 function readUtf8(filePath: string): string {

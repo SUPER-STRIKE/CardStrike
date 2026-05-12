@@ -113,7 +113,9 @@
   @media (max-width: 560px) { .hand { grid-template-columns: 1fr; } }
 
   .card {
-    background: linear-gradient(180deg, var(--bg-2) 0%, #0f1628 100%);
+    background:
+      linear-gradient(180deg, rgba(29, 39, 66, 0.92) 0%, rgba(15, 22, 40, 0.94) 100%),
+      url("Card/Assets/card-back.svg") center / cover no-repeat;
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 12px;
