@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Tiên tri hủy diệt",
+    "mana": 0,
+    "hpCost": 4,
+    "effects": [
+      "Nếu lượt chơi của người tiếp theo đánh ít nhất 1 lá bài, hồi 8 máu"
+    ]
+  },
+  {
+    "name": "Tiên tri hòa bình",
+    "mana": 4,
+    "hpCost": 0,
+    "effects": [
+      "Nếu lượt chơi của người tiếp theo không đánh bài hồi 8 mana"
+    ]
+  },
+  {
+    "name": "Cây cổ thụ",
+    "mana": 10,
+    "hpCost": 0,
+    "effects": [
+      "Đặt 1 cây vào ô linh vật của bạn, qua mỗi lượt 1 người chơi, hồi 5% máu tối đa"
+    ]
+  }
+]

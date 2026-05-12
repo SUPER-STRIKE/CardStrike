@@ -1,0 +1,14 @@
+{
+  "name": "cardstrike",
+  "private": true,
+  "scripts": {
+    "build:meta": "ts-node scripts/build-meta.ts",
+    "build:mechanic": "tsc -p Card/GameMechanic",
+    "test:cards": "ts-node DummyTest/testCards.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  }
+}
