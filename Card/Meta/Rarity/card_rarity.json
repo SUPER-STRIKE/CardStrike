@@ -5,5 +5,14 @@
   ],
   "Rare": [
     "Tiên tri hủy diệt"
+  ],
+  "Epic": [
+    "Special"
+  ],
+  "Legendary": [
+    "Support"
+  ],
+  "Mythic": [
+    "Unknown"
   ]
 }

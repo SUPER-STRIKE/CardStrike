@@ -1,6 +1,9 @@
 import type { Card } from "./parseCardData";
 import type { MetaBuckets } from "./parseMetaMarkdown";
 
+export type AssetEntry = { avatar: string; back: string };
+export type AssetManifest = Record<string, AssetEntry>;
+
 export type FullCard = {
   name: string;
   mana: number;
@@ -8,6 +11,8 @@ export type FullCard = {
   effects: string[];
   type: string;
   rarity: string;
+  avatar: string;
+  back: string;
 };
 
 function buildNameToLabel(buckets: MetaBuckets): Map<string, string> {
@@ -23,7 +28,8 @@ function buildNameToLabel(buckets: MetaBuckets): Map<string, string> {
 export function mergeCardMeta(
   cards: Card[],
   typeBuckets: MetaBuckets,
-  rarityBuckets: MetaBuckets
+  rarityBuckets: MetaBuckets,
+  assets: AssetManifest = {}
 ): FullCard[] {
   const nameToType = buildNameToLabel(typeBuckets);
   const nameToRarity = buildNameToLabel(rarityBuckets);
@@ -41,6 +47,11 @@ export function mergeCardMeta(
       rarity = "Unknown";
     }
 
+    const asset = assets[c.name];
+    if (!asset) {
+      console.warn(`[WARN] Missing asset entry for: ${c.name} (run \`npm run build:emblems\`)`);
+    }
+
     return {
       name: c.name,
       mana: c.mana,
@@ -48,6 +59,8 @@ export function mergeCardMeta(
       effects: c.effects,
       type,
       rarity,
+      avatar: asset?.avatar ?? "",
+      back: asset?.back ?? "",
     };
   });
 }

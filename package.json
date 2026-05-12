@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "build:meta": "ts-node scripts/build-meta.ts",
+    "build:emblems": "ts-node scripts/build-emblems.ts",
     "build:mechanic": "tsc -p Card/GameMechanic",
     "test:cards": "ts-node DummyTest/testCards.ts"
   },

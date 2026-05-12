@@ -108,29 +108,60 @@
   }
   .pending .empty { color: var(--muted); font-size: 12px; }
 
-  .hand { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .hand { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
   @media (max-width: 1100px) { .hand { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 560px) { .hand { grid-template-columns: 1fr; } }
 
-  .card {
-    background:
-      linear-gradient(180deg, rgba(29, 39, 66, 0.92) 0%, rgba(15, 22, 40, 0.94) 100%),
-      url("Card/Assets/card-back.svg") center / cover no-repeat;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 12px;
+  /* ---------- 3D flip card ---------- */
+  .card-3d-wrap {
+    position: relative;
+    perspective: 1100px;
     cursor: pointer;
-    transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
-    display: flex; flex-direction: column; gap: 8px;
-    min-height: 170px;
+    min-height: 320px;
   }
-  .card:hover:not(.disabled) {
-    transform: translateY(-3px);
-    border-color: var(--accent);
-    box-shadow: 0 12px 28px -12px var(--accent);
+  .card-3d-wrap.disabled { opacity: .45; cursor: not-allowed; }
+  .card-3d {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    transform-style: preserve-3d;
+    transition: transform .6s cubic-bezier(.2,.7,.2,1);
+    will-change: transform;
   }
-  .card.disabled { opacity: .45; cursor: not-allowed; }
-  .card .name { font-weight: 700; font-size: 14px; line-height: 1.25; }
+  .card-3d-wrap:hover:not(.disabled) .card-3d {
+    transform: rotateY(180deg);
+  }
+  .card-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px -16px rgba(0,0,0,.6);
+  }
+  .card-front {
+    background: linear-gradient(180deg, rgba(29,39,66,0.95) 0%, rgba(15,22,40,0.96) 100%);
+    padding: 12px;
+    display: grid;
+    grid-template-rows: auto auto 1fr auto auto;
+    gap: 8px;
+  }
+  .card-3d-wrap:hover:not(.disabled) .card-front { border-color: var(--accent); }
+  .card-back {
+    transform: rotateY(180deg);
+    background: #0b0f1a center / cover no-repeat;
+  }
+
+  .card-front .card-name { font-weight: 700; font-size: 14px; line-height: 1.25; }
+  .card-front .avatar {
+    background: var(--bg-0) center / cover no-repeat;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    min-height: 130px;
+  }
   .badges { display: flex; gap: 6px; flex-wrap: wrap; }
   .badge {
     font-size: 11px; padding: 2px 7px; border-radius: 999px;
@@ -147,7 +178,7 @@
   }
   .pill.mana { color: var(--accent); border-color: rgba(91,140,255,.4); }
   .pill.hp   { color: var(--red);    border-color: rgba(239,68,68,.4); }
-  .card .effect { font-size: 12px; color: var(--muted); line-height: 1.5; flex: 1; }
+  .card-front .effect { font-size: 12px; color: var(--muted); line-height: 1.5; }
 
   .center {
     background: var(--bg-1);
@@ -211,7 +242,18 @@
   </div>
 
 <script src="Card/GameMechanic/dist/gameMechanic.js"></script>
+<script src="Card/Meta/Assets/card_assets.js"></script>
 <script>
+  /* ---------- Asset lookup ---------- */
+  const FALLBACK_BACK = "Card/Assets/card-back.svg";
+  function assetFor(name) {
+    const a = (window.CARD_ASSETS || {})[name];
+    return {
+      avatar: a?.avatar || "",
+      back: a?.back || FALLBACK_BACK,
+    };
+  }
+
   /* ---------- Data ---------- */
   const CARD_DATA = [
     {
@@ -454,18 +496,28 @@
     if (!affordableMana)  reasons.push("Thiếu mana");
     if (!affordableHp)    reasons.push("Thiếu HP");
 
+    const art = assetFor(card.name);
+    const avatarStyle = art.avatar ? `background-image:url('${art.avatar}')` : "";
+    const backStyle   = `background-image:url('${art.back}')`;
+
     return `
-      <div class="card ${disabled ? "disabled" : ""}" data-card="${card.name}" title="${reasons.join(" · ")}">
-        <div class="name">${card.name}</div>
-        <div class="badges">
-          <span class="badge ${card.rarity.toLowerCase()}">${card.rarity}</span>
-          <span class="badge ${card.type.toLowerCase()}">${card.type}</span>
+      <div class="card-3d-wrap ${disabled ? "disabled" : ""}" data-card="${card.name}" title="${reasons.join(" · ")}">
+        <div class="card-3d">
+          <div class="card-face card-front">
+            <div class="card-name">${card.name}</div>
+            <div class="badges">
+              <span class="badge ${card.rarity.toLowerCase()}">${card.rarity}</span>
+              <span class="badge ${card.type.toLowerCase()}">${card.type}</span>
+            </div>
+            <div class="avatar" style="${avatarStyle}"></div>
+            <div class="cost-row">
+              <span class="pill mana">${card.mana} mana</span>
+              <span class="pill hp">${card.hpCost} HP</span>
+            </div>
+            <div class="effect">${card.effects.join("<br>")}</div>
+          </div>
+          <div class="card-face card-back" style="${backStyle}"></div>
         </div>
-        <div class="cost-row">
-          <span class="pill mana">${card.mana} mana</span>
-          <span class="pill hp">${card.hpCost} HP</span>
-        </div>
-        <div class="effect">${card.effects.join("<br>")}</div>
       </div>
     `;
   }
