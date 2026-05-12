@@ -1,9 +1,18 @@
 {
-  "Rare": [
-    "Tiên tri hủy diệt"
-  ],
   "Common": [
     "Tiên tri hòa bình",
     "Cây cổ thụ"
+  ],
+  "Rare": [
+    "Tiên tri hủy diệt"
+  ],
+  "Epic": [
+    "Tiên tri hủy diệt"
+  ],
+  "Legendary": [
+    "Tiên tri hủy diệt"
+  ],
+  "Mysthic": [
+    "Tiên tri hủy diệt"
   ]
 }
