@@ -1,9 +1,18 @@
 {
+  "Defense": [
+    "Defense"
+  ],
+  "Spell": [
+    "Spell"
+  ],
+  "Attack": [
+    "Unit"
+  ],
   "Special": [
     "Tiên tri hủy diệt",
     "Tiên tri hòa bình"
   ],
-  "Support": [
+  "Structure": [
     "Cây cổ thụ"
   ]
 }
