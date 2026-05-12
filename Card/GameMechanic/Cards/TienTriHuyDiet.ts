@@ -1,22 +1,27 @@
 /**
  * Cards/TienTriHuyDiet.ts — "Tiên tri hủy diệt"
  *
- * Cost (handled bên ngoài, qua card.hpCost = 4): -4 HP của caster
- * Effect: AddProphecy("destruction") → resolve cuối lượt sau của đối thủ
+ * Cost (trong CARD_DATA của cardTest.html / CardData.json):
+ *   mana: 0, hpCost: 4
+ *
+ * Khai báo effect — KHÔNG có code logic, chỉ là dữ liệu compose từ Mechanics:
+ *   1. AddProphecy: cuối lượt sau của opp, nếu opp đã đánh ≥ 1 bài thì
+ *      → SelfHealing(8) cho chủ thẻ
  */
-namespace GM.Cards.TienTriHuyDietDef {
-  GM.CardEffects["Tiên tri hủy diệt"] = {
-    onPlay({ selfIdx, oppIdx, players, log }) {
-      const me  = players[selfIdx];
-      const opp = players[oppIdx];
-
-      GM.addProphecy(opp, selfIdx, "destruction");
-
-      log(
-        "proph",
-        `   ↪ Lời tiên tri: nếu ${opp.name} đánh ≥1 bài lượt sau ` +
-        `→ ${me.name} hồi 8 HP`,
-      );
-    },
+namespace GM.CardDefs_TienTriHuyDiet {
+  GM.Cards["Tiên tri hủy diệt"] = {
+    effects: [
+      {
+        mechanic: "AddProphecy",
+        params: {
+          label: "Hủy diệt",
+          condition: { type: "OpponentPlayedAtLeast", count: 1 },
+          thenEffects: [
+            { mechanic: "SelfHealing", params: { flat: 8 } },
+          ],
+          elseEffects: [],
+        },
+      },
+    ],
   };
 }

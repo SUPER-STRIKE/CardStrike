@@ -293,16 +293,11 @@
     if (card.hpCost) costs.push(`-${card.hpCost} HP`);
     log("play", `${me.name} chơi "${card.name}"${costs.length ? ` (${costs.join(", ")})` : ""}`);
 
-    const GM = window.GM || {};
-    const def = (GM.CardEffects || {})[card.name];
-    if (def && typeof def.onPlay === "function") {
-      def.onPlay({
-        selfIdx: playerIdx,
-        oppIdx: 1 - playerIdx,
-        players: state.players,
-        state,
-        log,
-      });
+    const GM = window.GM;
+    const def = (GM.Cards || {})[card.name];
+    if (def && Array.isArray(def.effects)) {
+      const ctx = GM.makeContext(state, playerIdx, log);
+      GM.applyEffects(def.effects, ctx);
     } else {
       log("proph", `   ↪ (Chưa cấu hình hiệu ứng cho "${card.name}")`);
     }
@@ -317,15 +312,16 @@
 
     // Resolve prophecies targeting THIS turn (set by opponent last turn)
     if (me.incomingProphecies.length) {
-      const resolvers = (window.GM && window.GM.ProphecyResolvers) || {};
+      const GM = window.GM;
       for (const p of me.incomingProphecies) {
-        const owner = state.players[p.owner];
-        const resolver = resolvers[p.mode];
-        if (typeof resolver === "function") {
-          resolver({ target: me, owner, state, log });
-        } else {
-          log("proph", `(Không có resolver cho prophecy mode "${p.mode}")`);
-        }
+        // Context flipped: self = OWNER of prophecy, opp = TARGET (me)
+        const ctx = GM.makeContext(state, p.owner, log);
+        const ok = GM.evaluateCondition(p.condition, ctx);
+        log(
+          "proph",
+          `Tiên tri "${p.label}" — ${me.name} đánh ${state.cardsThisTurn} bài → ${ok ? "✓" : "✗"}`,
+        );
+        GM.applyEffects(ok ? p.thenEffects : p.elseEffects, ctx);
       }
       me.incomingProphecies = [];
     }
@@ -336,11 +332,13 @@
     state.cardsThisTurn = 0;
 
     // Turn-start passives (e.g. Cây cổ thụ heal) — run for both players
-    const passives = (window.GM && window.GM.TurnStartEffects) || {};
-    for (const p of state.players) {
+    const GM = window.GM;
+    const passives = GM.TurnStartEffects || {};
+    for (let i = 0; i < state.players.length; i++) {
+      const ctx = GM.makeContext(state, /** @type {0|1} */ (i), log);
       for (const passiveId of Object.keys(passives)) {
         try {
-          passives[passiveId]({ owner: p, state, log });
+          passives[passiveId](ctx);
         } catch (err) {
           log("proph", `(Lỗi passive "${passiveId}": ${err.message})`);
         }
@@ -420,7 +418,7 @@
         <div class="pending">
           ${p.incomingProphecies.length
             ? p.incomingProphecies.map(pr => `
-                <span class="chip">${pr.mode === "destruction" ? "Hủy diệt" : "Hòa bình"} · chủ: ${state.players[pr.owner].name}</span>
+                <span class="chip">${pr.label} · chủ: ${state.players[pr.owner].name}</span>
               `).join("")
             : `<span class="empty">(không có)</span>`}
         </div>

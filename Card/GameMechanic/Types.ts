@@ -1,32 +1,38 @@
 /**
  * Types.ts — Core types shared across the GameMechanic module.
  *
- * IMPORTANT: HP semantics
- *   - `player.hp`    = CURRENT HP, always clamped to [0, maxHp]
- *   - `player.maxHp` = MAX HP, the upper bound for healing
- *   - All percentage-based heals/damages MUST use `maxHp` as their base,
- *     never `hp`.
- *   - Primitives clamp the result, callers don't need to.
+ * Kiến trúc data-driven:
+ *   - Cards là DỮ LIỆU: 1 list `EffectEntry` mỗi lá
+ *   - Mechanics là HÀM ĐĂNG KÝ: `GM.Mechanics["SelfHealing"].apply(ctx, params)`
+ *   - Conditions là PREDICATE: dùng bên trong AddProphecy
+ *
+ * IMPORTANT — HP semantics:
+ *   - `player.hp`    = CURRENT HP, luôn nằm trong [0, maxHp]
+ *   - `player.maxHp` = MAX HP, trần cho heal
+ *   - % heal LUÔN dùng `maxHp` làm base (không phải currentHp)
+ *   - Mọi Mechanic tự clamp; caller không cần lo
  */
 namespace GM {
+  /* ================================================================== */
+  /*  Player & state                                                    */
+  /* ================================================================== */
   export interface Player {
     name: string;
-    /** Current HP. Always in [0, maxHp]. */
     hp: number;
-    /** Max HP. The ceiling that current HP cannot exceed. */
     maxHp: number;
     mana: number;
     trees: number;
     incomingProphecies: PendingProphecy[];
   }
 
-  /** Identifier for a prophecy resolver. New modes can be registered freely. */
-  export type ProphecyMode = string;
-
   export interface PendingProphecy {
-    /** Index (0 | 1) of the player who CAST the prophecy. */
+    /** Index (0|1) của player ĐẶT prophecy. */
     owner: 0 | 1;
-    mode: ProphecyMode;
+    /** Nhãn hiển thị (UI chip). */
+    label: string;
+    condition: ConditionSpec;
+    thenEffects: EffectEntry[];
+    elseEffects: EffectEntry[];
   }
 
   export interface GameState {
@@ -39,37 +45,66 @@ namespace GM {
   }
 
   export type LogKind = "turn" | "play" | "effect" | "cost" | "proph";
-
-  export interface LogEntry {
-    kind: LogKind;
-    text: string;
-  }
-
+  export interface LogEntry { kind: LogKind; text: string; }
   export type LogFn = (kind: LogKind, text: string) => void;
 
-  /** Context passed to a card's onPlay handler. */
+  /* ================================================================== */
+  /*  Context truyền vào mechanics & conditions                         */
+  /* ================================================================== */
+  /**
+   * Context "self/opp" tương đối với người ĐANG kích hoạt mechanic:
+   *   - Khi card được chơi:        self = người chơi card,    opp = đối thủ
+   *   - Khi prophecy resolve:      self = OWNER của prophecy, opp = target (lượt vừa kết thúc)
+   *   - Khi passive tick:          self = chủ passive,        opp = player còn lại
+   */
   export interface EffectContext {
     selfIdx: 0 | 1;
     oppIdx: 0 | 1;
+    self: Player;
+    opp: Player;
     players: Player[];
     state: GameState;
     log: LogFn;
   }
 
-  /** Context passed to a prophecy resolver at the end of the TARGET's turn. */
-  export interface ProphecyContext {
-    /** Player whose turn just ended (the one the prophecy was "watching"). */
-    target: Player;
-    /** Player who originally cast the prophecy. */
-    owner: Player;
-    state: GameState;
-    log: LogFn;
+  /* ================================================================== */
+  /*  Effect entries (data-driven card definitions)                     */
+  /* ================================================================== */
+  /**
+   * Mỗi lá bài khai báo list các effect entry này. Tag union để TS check.
+   * Thêm mechanic mới → thêm 1 nhánh vào union.
+   */
+  export type EffectEntry =
+    | { mechanic: "SelfDamage";       params: { amount: number } }
+    | { mechanic: "SelfHealing";      params: HealParams }
+    | { mechanic: "OpponentDamage";   params: { amount: number } }
+    | { mechanic: "OpponentHealing";  params: HealParams }
+    | { mechanic: "ManaGain";         params: { amount: number } }
+    | { mechanic: "OpponentManaLoss"; params: { amount: number } }
+    | { mechanic: "PlaceTree";        params: {} }
+    | { mechanic: "AddProphecy";      params: AddProphecyParams };
+
+  export type HealParams = { flat: number } | { pctOfMax: number };
+
+  export interface AddProphecyParams {
+    label: string;
+    condition: ConditionSpec;
+    thenEffects: EffectEntry[];
+    elseEffects?: EffectEntry[];
   }
 
-  /** Context passed to a turn-start passive (e.g. tree heal). */
-  export interface TurnStartContext {
-    owner: Player;
-    state: GameState;
-    log: LogFn;
+  /* ================================================================== */
+  /*  Condition specs                                                   */
+  /* ================================================================== */
+  export type ConditionSpec =
+    | { type: "OpponentPlayedAtLeast"; count: number }
+    | { type: "OpponentPlayedAtMost";  count: number };
+
+  /* ================================================================== */
+  /*  Card definitions                                                  */
+  /* ================================================================== */
+  export interface CardDefinition {
+    /** List effect chạy khi card được CHƠI (sau khi đã trừ cost). */
+    effects: EffectEntry[];
   }
 }

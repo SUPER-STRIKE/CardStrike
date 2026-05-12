@@ -1,26 +1,23 @@
 /**
- * Passives/TreeHeal.ts — Cây cổ thụ heal định kỳ
+ * Passives/TreeHeal.ts
  *
- * Mỗi lượt (cả 2 players), mỗi cây trong ô linh vật của 1 player hồi
- *   5% của MAX HP của chính player đó.
+ * Đăng ký vào GM.TurnStartEffects["tree"].
  *
- * Stack tuyến tính: 3 cây = 15% maxHp/lượt.
- * Tự clamp tại maxHp (do SelfHealing primitive xử lý).
+ * Mỗi đầu lượt (cả 2 players), nếu `ctx.self.trees > 0`:
+ *   Gọi mechanic SelfHealing với { pctOfMax: 0.05 } một lần cho mỗi cây.
+ *   (Có thể gộp thành 1 lời gọi flat để log gọn hơn.)
+ *
+ * Dùng GM.Mechanics["SelfHealing"] luôn → tự động hưởng clamp tại maxHp.
  */
-namespace GM.Passives.TreeHealTick {
+namespace GM.Passives_TreeHeal {
   const TREE_HEAL_PCT = 0.05;
 
-  GM.TurnStartEffects["tree"] = ({ owner, log }) => {
-    if (owner.trees <= 0) return;
-    const perTree = Math.max(1, Math.floor(owner.maxHp * TREE_HEAL_PCT));
-    const requested = perTree * owner.trees;
-    const actual = GM.selfHealing(owner, { flat: requested });
-    if (actual > 0) {
-      log(
-        "effect",
-        `🌳 ${owner.trees} cây của ${owner.name} hồi ${actual} HP ` +
-        `(${perTree}/cây) → ${owner.hp}/${owner.maxHp}`,
-      );
-    }
+  GM.TurnStartEffects["tree"] = (ctx) => {
+    const me = ctx.self;
+    if (me.trees <= 0) return;
+    const perTree  = Math.max(1, Math.floor(me.maxHp * TREE_HEAL_PCT));
+    const requested = perTree * me.trees;
+    // delegate xuống SelfHealing để clamp tại maxHp + log thống nhất
+    GM.Mechanics["SelfHealing"].apply(ctx, { flat: requested });
   };
 }

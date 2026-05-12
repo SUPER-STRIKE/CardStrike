@@ -1,22 +1,26 @@
 /**
  * Cards/TienTriHoaBinh.ts — "Tiên tri hòa bình"
  *
- * Cost (handled bên ngoài, qua card.mana = 4): -4 mana
- * Effect: AddProphecy("peace") → resolve cuối lượt sau của đối thủ
+ * Cost: mana: 4, hpCost: 0
+ *
+ * Effect:
+ *   1. AddProphecy: cuối lượt sau của opp, nếu opp đánh 0 bài thì
+ *      → ManaGain(8) cho chủ thẻ
  */
-namespace GM.Cards.TienTriHoaBinhDef {
-  GM.CardEffects["Tiên tri hòa bình"] = {
-    onPlay({ selfIdx, oppIdx, players, log }) {
-      const me  = players[selfIdx];
-      const opp = players[oppIdx];
-
-      GM.addProphecy(opp, selfIdx, "peace");
-
-      log(
-        "proph",
-        `   ↪ Lời tiên tri: nếu ${opp.name} KHÔNG đánh bài lượt sau ` +
-        `→ ${me.name} hồi 8 mana`,
-      );
-    },
+namespace GM.CardDefs_TienTriHoaBinh {
+  GM.Cards["Tiên tri hòa bình"] = {
+    effects: [
+      {
+        mechanic: "AddProphecy",
+        params: {
+          label: "Hòa bình",
+          condition: { type: "OpponentPlayedAtMost", count: 0 },
+          thenEffects: [
+            { mechanic: "ManaGain", params: { amount: 8 } },
+          ],
+          elseEffects: [],
+        },
+      },
+    ],
   };
 }
